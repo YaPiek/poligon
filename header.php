@@ -58,6 +58,7 @@
   ?>
 </nav>
 
+<?php if ( is_front_page() ) : ?>
 <!-- Sekcja HERO -->
 <section class="hero" id="hero">
   <!-- Warstwy głębi -->
@@ -71,6 +72,7 @@
     <a href="https://lyocycle.pl/produkty" class="hero-btn">Zobacz więcej</a>
   </div>
 </section>
+<?php endif; ?>
 
 <?php
   // Dalej idzie treść kolejnych sekcji...

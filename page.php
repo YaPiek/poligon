@@ -1,4 +1,7 @@
-<?php get_header(); ?>
+<?php
+// Load global header with navbar
+get_header();
+?>
 
 <?php
 /* -------------------------------------------------

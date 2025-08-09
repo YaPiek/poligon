@@ -57,7 +57,7 @@ function lyocycle_enqueue_assets() {
         'how-it-works.css','lab_form.css','lyocycle.css',
         'mini_video.css','process.css','products.css',
         'showcase.css','startups.css','timeline.css',
-        'video_sep.css','vision.css','dream.css',
+        'video_sep.css','vision.css','dream.css','info.css'
     ];
     foreach ( $css as $file ) {
         wp_enqueue_style(
@@ -93,7 +93,7 @@ function lyocycle_enqueue_assets() {
         'hero_parallax.js','benefits.js','counter.js','flavor_wheel.js',
         'lab_form.js','lyocycle.js','mini_video.js','process.js',
         'products.js','timeline.js','video_sep.js',
-        'vision.js','particles-uni.js', 'go-up.js', 'dream.js',
+        'vision.js','particles-uni.js', 'go-up.js', 'dream.js', 'info.js'
     ];
     foreach ( $js as $file ) {
         $handle = 'lyo-' . str_replace('.js','',$file);

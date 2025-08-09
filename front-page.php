@@ -9,6 +9,7 @@
      * template w katalogu template‑parts/sections/section‑{nazwa}.php.
      */
     get_template_part( 'template-parts/sections/section', 'video-sep' );
+    get_template_part( 'template-parts/sections/section', 'info' );
     get_template_part( 'template-parts/sections/section', 'lyocycle' );
     get_template_part( 'template-parts/sections/section', 'products' );
     get_template_part( 'template-parts/sections/section', 'vision' );
