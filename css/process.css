@@ -1,0 +1,239 @@
+:root {
+  --bg: #050505;
+  --text: #e5e5e5;
+  --accent: #00ffaa;
+  --font: 'Inter', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  max-height: 30vh;
+  overflow-x: hidden;
+}
+
+#canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 30vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+
+/* --- Karty wartości --- */
+.value-section {
+  max-width: 700px;
+  width: 90vw;
+  margin: 2.2rem auto;
+  background: rgba(24, 27, 44, 0.92);
+  border-radius: 2.2rem;
+  padding: 2.2rem 2rem 1.7rem 2rem;
+  box-shadow: 0 8px 54px 0 #2e23574f;
+  opacity: 0;
+  transform: translateY(52px) scale(0.97);
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 1.5rem;
+  transition: background 0.35s, box-shadow 0.42s, opacity 1.06s cubic-bezier(.23,1.01,.32,1), transform 1.09s cubic-bezier(.23,1.01,.32,1);
+  backdrop-filter: blur(2.5px) saturate(1.08);
+  will-change: opacity, transform, background, box-shadow;
+  position: relative;
+}
+
+/* Animacja pojawiania */
+.value-section.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.value-content {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  gap: 2.1rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.value-text {
+  flex: 2;
+  min-width: 240px;
+}
+
+.value-section h2 {
+  font-size: clamp(2.15rem, 5vw, 3.55rem);
+  margin-bottom: 0.7em;
+  color: #26ffd0;
+  letter-spacing: 0.02em;
+  font-weight: 800;
+  line-height: 1.07;
+  text-shadow: 0 2px 16px #00ffc438;
+}
+
+.value-section p {
+  font-size: 1.13rem;
+  line-height: 1.62;
+  color: #e4f3fa;
+  letter-spacing: 0.01em;
+}
+
+.value-image {
+  flex: 1;
+  min-width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.value-image img {
+  max-width: 158px;
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+  box-shadow: 0 10px 48px #0ff5b930, 0 2px 14px #1a1e3380;
+  transform: translateX(12px) scale(1.07) rotateZ(-2deg);
+  background: #1a1638;
+  border: 2px solid #10142a22;
+  transition: transform 0.45s, box-shadow 0.45s;
+}
+
+.value-image img:hover {
+  transform: scale(1.11) rotateZ(-1deg);
+  box-shadow: 0 14px 64px #1ac0ff43, 0 2px 16px #0006;
+}
+
+/* Mini-statystyki */
+.mini-stats {
+  display: flex;
+  gap: 1.08rem;
+  margin-top: 1.66rem;
+  flex-wrap: wrap;
+}
+
+.mini-stat {
+  padding: 0.49rem 1.19rem;
+  background: #ffffff13;
+  border-radius: 999px;
+  font-size: 1.05rem;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.48rem;
+  color: #cff;
+  box-shadow: 0 2px 12px #00ffc41b;
+  transition: background 0.33s, transform 0.18s;
+  cursor: pointer;
+  user-select: none;
+}
+.mini-stat strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+.mini-stat:hover {
+  background: #00ffd528;
+  color: #fff;
+  transform: scale(1.07);
+}
+
+/* Responsywność */
+@media (max-width: 940px) {
+ 
+  .value-section, .value-content {
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 98vw;
+    gap: 0.8rem;
+  }
+  .value-image img { max-width: 100%; margin-left: 0; }
+}
+
+@media (max-width: 600px) {
+  .value-section {
+    padding: 1.28rem 0.7rem 1.1rem 0.5rem;
+    border-radius: 1.19rem;
+    margin: 2.6rem 0.2rem 2.1rem 0.2rem;
+  }
+  .value-section h2 { font-size: 2.1rem; }
+}
+
+
+
+#process-section {
+  position: relative;
+  width: 100vw;
+  height: 600px;
+  min-height: 600px;
+  max-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  z-index: 10;
+}
+
+.process-bg-video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100vw; height: 600px;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.process-bg-video video,
+.process-bg-overlay {
+  width: 100vw; height: 600px;
+  object-fit: cover;
+  position: absolute; top: 0; left: 0;
+}
+.process-bg-overlay {
+  background: radial-gradient(ellipse at 60% 40%, #181b2cd2 54%, #19141e 100%);
+  opacity: 0.7;
+  z-index: 2;
+}
+
+.process-cards-viewport {
+  position: relative;
+  z-index: 3;
+  width: 100vw;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#uiElement {
+  width: 100vw;
+  height: 100%;
+  overflow-y: auto;
+  padding-right: 18px; /* żeby scroll nie nachodził na karty */
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Karty – dopasuj do 100% szerokości viewportu, ustaw max-width */
+
+
+/* Opcjonalnie: dla mobilnych */
+@media (max-width: 800px) {
+  #process-section,
+  .process-cards-viewport {
+    height: 7000px;
+    min-height: 380px;
+    max-height: 700px;
+  }
+}

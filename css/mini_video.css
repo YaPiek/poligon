@@ -1,0 +1,7 @@
+.video-thumb{position:relative;display:inline-block;cursor:pointer;border-radius:16px;overflow:hidden}
+.video-thumb img{width:100%;max-width:400px;border-radius:16px}
+.video-thumb i{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:60px;color:#fff;opacity:.8;transition:.3s}
+.video-thumb:hover i{opacity:1;transform:translate(-50%,-50%) scale(1.2)}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999}
+.modal video{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);max-width:90vw;max-height:90vh;border-radius:12px}
+.modal-close{position:absolute;top:20px;right:30px;font-size:40px;color:#fff;cursor:pointer}

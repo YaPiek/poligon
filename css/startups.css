@@ -1,0 +1,152 @@
+/* ========== START-UP SECTION – PRO EDITION ========== */
+:root{
+  --c-accent:#20362c;
+  --c-secondary:#0e1635;
+  --c-bg:#0c162d;
+  --c-white:#ffffff;
+}
+
+.startup-reset{
+  position:relative;
+  background:url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat fixed;
+  padding:140px 20px;
+  color:var(--c-white);
+  text-align:center;
+  overflow:hidden;
+}
+
+/* ciemne tło z animowanym gradientem */
+.startup-reset::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(12,22,45,.85) 0%,rgba(0,0,0,.75) 100%);
+  animation:bgShift 15s ease-in-out infinite alternate;
+}
+
+@keyframes bgShift{
+  0%   {filter:hue-rotate(0deg)   brightness(1);}
+  100% {filter:hue-rotate(30deg)  brightness(1.1);}
+}
+
+.startup-inner{
+  position:relative;
+  z-index:2;
+  max-width:720px;
+  margin:0 auto;
+  animation:fadeInUp 1s ease-out forwards;
+}
+
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(40px)}
+  to  {opacity:1;transform:translateY(0)}
+}
+
+/* --- Tytuł – neon-glow --- */
+.startup-inner h2{
+  font-size:clamp(2.2rem,5vw,3.4rem);
+  margin:0 0 24px;
+  color:var(--c-white);
+  letter-spacing:.5px;
+  text-shadow:0 0 6px var(--c-accent),0 0 12px var(--c-accent);
+  animation:pulseGlow 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow{
+  from{text-shadow:0 0 6px var(--c-accent),0 0 12px var(--c-accent);}
+  to  {text-shadow:0 0 8px var(--c-accent),0 0 20px var(--c-accent),0 0 30px var(--c-accent);}
+}
+
+/* --- Paragraf --- */
+.startup-inner p{
+  font-size:1.15rem;
+  line-height:1.7;
+  margin:0 auto 36px;
+  max-width:520px;
+}
+
+/* --- Lista benefitów --- */
+.startup-perks{
+  list-style:none;
+  padding:0;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:24px;
+  margin-bottom:46px;
+}
+
+.startup-perks li{
+  position:relative;
+  background:rgba(0 255 136 /.08);
+  border:1px solid rgba(0 255 136 /.25);
+  padding:14px 30px;
+  border-radius:50px;
+  font-size:15px;
+  font-weight:500;
+  transition:all .35s cubic-bezier(.25,.8,.25,1);
+  cursor:default;
+}
+
+/* migająca kropka przed tekstem */
+.startup-perks li::before{
+  content:'';
+  display:inline-block;
+  width:8px;
+  height:8px;
+  margin-right:10px;
+  border-radius:50%;
+  background:var(--c-accent);
+  animation:blink 1.5s ease-in-out infinite;
+}
+
+@keyframes blink{
+  0%,100%{opacity:1;}
+  50%{opacity:.2;}
+}
+
+.startup-perks li:hover{
+  transform:translateY(-6px);
+  background:rgba(0 255 136 /.18);
+  border-color:var(--c-accent);
+  box-shadow:0 0 18px rgba(0 255 136 /.45);
+}
+
+/* --- Przycisk CTA – glow & scale --- */
+.startup-btn{
+  display:inline-block;
+  position:relative;
+  background:linear-gradient(45deg,var(--c-accent),var(--c-secondary));
+  color:rgb(169, 169, 169);
+  padding:16px 42px;
+  border-radius:50px;
+  font-weight:700;
+  text-decoration:none;
+  overflow:hidden;
+  transition:.4s;
+  z-index:1;
+}
+
+.startup-btn::before{          /* rozbłysk */
+  content:'';
+  position:absolute;
+  top:-50%;left:-50%;
+  width:200%;height:200%;
+  background:linear-gradient(45deg,transparent,rgba(255 255 255 /.25),transparent);
+  transform:rotate(45deg) translateY(-100%);
+  transition:transform .6s;
+}
+
+.startup-btn:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 20px var(--c-accent),0 0 40px var(--c-accent);
+}
+
+.startup-btn:hover::before{
+  transform:rotate(45deg) translateY(100%);
+}
+
+/* --- Responsive --- */
+@media(max-width:768px){
+  .startup-perks{flex-direction:column;align-items:center}
+}

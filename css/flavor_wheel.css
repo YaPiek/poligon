@@ -1,0 +1,3 @@
+#flavor-wheel{display:flex;flex-direction:column;align-items:center}
+#wheelCanvas{cursor:pointer;max-width:90vw}
+.wheel-output{margin-top:30px;font-size:22px;font-weight:600}

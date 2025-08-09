@@ -1,0 +1,70 @@
+/* --- CARDS --- */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px}
+.card{position:relative;background:#111930;border-radius:16px;overflow:hidden;height:360px;transition:transform .5s,box-shadow .5s}
+.card:hover{transform:rotateY(10deg) scale(1.05) translateY(-10px);box-shadow:0 20px 25px -5px rgba(0,0,0,.2),0 10px 10px -5px rgba(0,0,0,.1)}
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transform: translateZ(0); /* włączenie warstwy GPU */
+  will-change: transform;   /* optymalizacja */
+}
+.card-info{padding:25px}
+.card-info h3{font-size:22px;margin-bottom:10px}
+.card-info p{opacity:.8}
+
+/* --- Micro-interakcje kart --- */
+.card {
+  position: relative;
+  overflow: hidden;
+  padding: 20px ;
+  transition: transform .45s cubic-bezier(.23,1,.32,1),
+              box-shadow .45s cubic-bezier(.23,1,.32,1);
+}
+.card:hover {
+  transform: translateY(-12px) rotateX(8deg) rotateY(4deg);
+  box-shadow: 0 25px 40px -10px rgba(0,255,136,.25),
+              0 10px 20px -10px rgba(0,0,0,.3);
+}
+
+/* Połysk */
+.card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -150%;
+  width: 120%;
+  height: 200%;
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgba(255,255,255,.15) 50%,
+    transparent 70%
+  );
+  transform: rotate(25deg);
+  transition: left .6s;
+}
+.card:hover::before {
+  left: 150%;
+}
+
+/* Ripple (bazowy styl) */
+.card .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,.35);
+  pointer-events: none;
+  transform: scale(0);
+  opacity: .6;
+  animation: rippleAnim .6s ease-out;
+}
+@keyframes rippleAnim {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+.products .cards .card img {
+  transform: none !important;
+  will-change: auto !important;
+}

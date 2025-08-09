@@ -1,0 +1,283 @@
+/* ================= lyocycle.css ================= */
+:root {
+  --lyo-accent: #00ff88;
+  --lyo-accent-dark: #00cc6a;
+  --lyo-bg: #0c162d;
+  --lyo-bg-light: #142044;
+  --lyo-text: #ffffff;
+  --lyo-text-light: rgba(255, 255, 255, 0.9);
+}
+
+.lyocycle-section {
+  width: 100vw;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--lyo-bg) 0%, var(--lyo-bg-light) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.lyocycle-section::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0,255,136,0.05) 0%, transparent 70%);
+  animation: rotate 60s linear infinite;
+  z-index: 0;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.lyo-wrapper {
+  width: 100%;
+  max-width: 1400px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.lyo-left {
+  color: var(--lyo-text);
+  animation: fadeInLeft 1s ease-out;
+}
+
+.lyo-right {
+  animation: fadeInRight 1s ease-out;
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.lyo-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 0 0 12px;
+  line-height: 1.2;
+  background: linear-gradient(to right, var(--lyo-accent), #ffffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+.lyo-sub {
+  font-size: 1.5rem;
+  color: var(--lyo-text-light);
+  margin-bottom: 25px;
+  line-height: 1.4;
+}
+
+.lyo-desc {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--lyo-text-light);
+  margin-bottom: 40px;
+}
+
+.lyo-cta {
+  padding: 16px 40px;
+  border: 2px solid var(--lyo-accent);
+  background: transparent;
+  color: var(--lyo-accent);
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.lyo-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--lyo-accent);
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.lyo-cta:hover {
+  color: var(--lyo-bg);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+}
+
+.lyo-cta:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.lyo-right ul {
+  list-style: none;
+  margin: 0 0 40px;
+  padding: 0;
+  color: var(--lyo-text);
+}
+
+.lyo-list li {
+  margin-bottom: 20px;
+  font-size: 1.15rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.lyo-list li:hover {
+  transform: translateX(10px);
+  background: rgba(0, 255, 136, 0.1);
+}
+
+.lyo-list span {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.lyo-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.lyo-stat-item {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.lyo-stat-item:hover {
+  transform: translateY(-5px);
+  background: rgba(0, 255, 136, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 255, 136, 0.1);
+}
+
+.lyo-stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--lyo-accent);
+  margin-bottom: 5px;
+}
+
+.lyo-stat-label {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.lyo-process {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  position: relative;
+}
+
+.lyo-process::before {
+  content: '';
+  position: absolute;
+  top: 25px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--lyo-accent);
+  z-index: 0;
+}
+
+.lyo-process-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+}
+
+.lyo-process-icon {
+  width: 50px;
+  height: 50px;
+  background: var(--lyo-accent);
+  color: var(--lyo-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.lyo-process-item:hover .lyo-process-icon {
+  transform: scale(1.1);
+  box-shadow: 0 0 0 5px rgba(0, 255, 136, 0.3);
+}
+
+.lyo-process-text {
+  font-size: 0.9rem;
+  text-align: center;
+  max-width: 100px;
+}
+
+@media (max-width: 992px) {
+  .lyo-wrapper {
+    gap: 50px;
+  }
+  
+  .lyo-title {
+    font-size: 2.8rem;
+  }
+  
+  .lyo-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .lyo-wrapper {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .lyo-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .lyo-process {
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+  }
+  
+  .lyo-process::before {
+    display: none;
+  }
+}

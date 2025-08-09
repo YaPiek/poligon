@@ -1,0 +1,246 @@
+/* ========= SUBDUED THEME – unified override ========= */
+:root {
+  /* --- Core greys --- */
+  --clr-bg-deep: #0d0d0f;
+  --clr-bg-surface: #16181d;
+  --clr-bg-elevated: #1e2028;
+
+  /* --- Subtle accents --- */
+  --clr-accent: #5a6a8c;   /* muted indigo */
+  --clr-glow: #7d869c;     /* soft steel */
+  --clr-highlight: #9ba3b4;/* light stone */
+
+  /* --- Text --- */
+  --clr-text: #d6d8e0;
+  --clr-text-muted: #9fa3ad;
+
+  /* --- Override all previous neon tokens --- */
+  --c1: var(--clr-bg-deep);
+  --c2: var(--clr-accent);
+  --c3: var(--clr-glow);
+  --c4: var(--clr-highlight);
+  --white: var(--clr-text);
+
+  /* Glass & shadows */
+  --glass-bg: rgba(255 255 255 / 0.04);
+  --glass-border: rgba(255 255 255 / 0.08);
+  --glow: 0 0 0 1px var(--glass-border),
+          0 4px 16px rgba(0 0 0 / 0.25);
+}
+
+/* --- Global resets --- */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background: var(--clr-bg-deep);
+  color: var(--clr-text);
+}
+
+@font-face {
+  font-family: 'Agency FB';
+  src: url('fonts/AGENCYB.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Agency FB';
+  src: url('fonts/AGENCYB.TTF') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* --- Links & buttons --- */
+a,
+button,
+.cta,
+.hero-btn,
+.lyo-cta,
+.v-cta {
+  color: var(--clr-highlight);
+  border-color: var(--clr-accent);
+}
+a:hover,
+button:hover,
+.cta:hover,
+.hero-btn:hover,
+.lyo-cta:hover,
+.v-cta:hover {
+  color: var(--clr-bg-deep);
+  background: var(--clr-highlight);
+}
+
+/* --- Gradients --- */
+.heading-gradient,
+.gradient-text,
+.hero h1,
+.lyo-title {
+  background: linear-gradient(135deg, var(--clr-accent), var(--clr-highlight));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* --- Glassmorphism cards --- */
+.feature-item,
+.adv-card,
+.card,
+.showcase-card,
+.value-section,
+.value-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glow);
+}
+
+/* --- Muted shadows on hover --- */
+.feature-item:hover,
+.card:hover,
+.showcase-card:hover {
+  box-shadow: 0 12px 28px rgba(0 0 0 / 0.3);
+}
+
+/* --- Footer & nav --- */
+.site-footer,
+#main-nav.scrolled {
+  background: var(--clr-bg-surface);
+}
+
+/* --- Scroll-bar (optional) --- */
+::-webkit-scrollbar-thumb {
+  background: var(--clr-accent);
+  border-radius: 6px;
+}
+
+/* --- Remove old neon animations --- */
+@keyframes glow {}
+@keyframes heroGradient {}
+@keyframes videoGradient {}
+@keyframes crystalGlow {}
+
+/* --- Soft transition everywhere --- */
+* {
+  transition: color 0.2s ease, background 0.2s ease, border 0.2s ease;
+}
+
+    /* Logo SVG - kontener : wyśrodkowanie i rozmiar */
+    #logo-container svg#logo-svg {
+    width: 50%;
+    height: auto;
+    }
+    /* Ustawienie koloru linii i wypełnienia */
+    #logo-svg path,
+    #logo-svg ellipse {
+      stroke: #255463;
+      stroke-width: 3;
+      fill: #fff;
+    }
+
+    #logo-container {
+  /* dzięki temu SVG nie “wypycha” kontenera po transformacji */
+  display: inline-block;
+  transform-origin: top left;
+  transform: scale(0.5);
+}
+
+/* --- Page Settings --- */
+
+:root{
+  --accent:#00ff88;
+  --dark:#0c162d;
+}
+
+/* --- Hero --- */
+.page-hero{
+  position:relative;
+  height:50vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+
+.page-hero__inner{
+  position:relative;
+  z-index:2;
+  text-align:center;
+}
+.page-hero__title{
+  font-size:clamp(2.5rem,6vw,4rem);
+  color:#fff;
+  letter-spacing:.5px;
+  text-shadow:0 0 10px var(--accent);
+}
+
+/* --- Card --- */
+.page-card{
+  max-width:900px;
+  margin:60px auto;
+  background:var(--dark);
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+  transition:.4s;
+}
+.page-card:hover{
+  transform:translateY(-6px) scale(1.01);
+  box-shadow:0 15px 40px rgba(0,255,136,.25);
+}
+.page-card__thumb img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+.page-card__body{padding:40px}
+.page-card__content{
+  font-size:1.1rem;
+  line-height:1.8;
+  color:#e4e8f0;
+}
+.page-card__content h2,
+.page-card__content h3{
+  margin-top:2rem;
+  color:var(--accent);
+}
+
+/* --- Responsive --- */
+@media(max-width:768px){
+  .page-hero{height:40vh}
+  .page-card{margin:30px 20px}
+  .page-card__body{padding:30px 20px}
+}
+
+/* --- Gutenberg support --- */
+.entry-content > * {
+  /* keep blocks inside readable width */
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.entry-content .alignwide  { max-width: 1100px; }
+.entry-content .alignfull  { max-width: none; }
+
+/* --- Optional: remove hero when blocks are used --- */
+.page-content:not(:has(.page-card)) .page-hero {
+  display: none;
+}
+
+/* Każdy blok Kadence z klasą .kb-section animuje się */
+.kb-section {
+  animation: fadeInUp 1s both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Parallax dla tła */
+.kb-section[data-kb-parallax="true"] {
+  background-attachment: fixed;
+  background-size: cover;
+}

@@ -1,0 +1,222 @@
+/* ===== GLOBAL STYLES ===== */
+:root {
+  /* Nowe, eleganckie kolory */
+  --clr-bg: #121212; /* Głęboka, ciemna szarość */
+  --clr-glass: rgba(255, 255, 255, 0.08); /* Lekko jaśniejsze szkło */
+  --clr-glow: #6a0572; /* Szlachetny fiolet */
+  --clr-accent: #2e8b57; /* Ciemna, elegancka zieleń morska */
+  
+  --mouse-x: 0px;
+  --mouse-y: 0px;
+  --glass-blur: 15px; /* Zwiększony blur dla bardziej "szklanego" efektu */
+}
+
+/* ===== FEATURES SECTION ===== */
+.feature-item[data-animate] {
+  opacity: 1;
+  transform: translateY(30px) scale(0.98);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.features-icons {
+  width: 100%;
+  /* Nowe, subtelne tło */
+  background: #121212;
+  position: relative;
+  overflow: hidden;
+  padding: 100px 0; /* Zwiększony padding dla lepszej przestrzeni */
+  text-align: center;
+}
+
+.features-icons::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  /* Delikatniejszy efekt blasku */
+  background: radial-gradient(circle 600px at 50% 50%, rgba(106, 5, 114, 0.2), transparent 60%);
+  pointer-events: none;
+  transform: translate(var(--mouse-x), var(--mouse-y));
+  transition: transform .8s ease-out; /* Dłuższa i płynniejsza animacja */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.features-categories {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  margin-bottom: 80px;
+  font-size: 2.8rem; /* Większy rozmiar */
+  font-family: 'Poppins', 'Inter', Arial, sans-serif;
+  font-weight: 600; /* Lżejsza waga */
+  letter-spacing: normal;
+}
+
+.features-category {
+  font-style: normal; /* Usunięcie kursywy */
+  letter-spacing: .05em;
+  transition: color 0.4s ease;
+  position: relative;
+  padding-bottom: 12px;
+  color: #a0a0a0; /* Zaczynamy od subtelnego koloru */
+}
+
+.features-category::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: var(--clr-accent); /* Jednolity kolor linii */
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.features-category:hover::after {
+  width: 100%;
+}
+
+.features-category:hover {
+  color: #ffffff;
+}
+
+.features-category.active { /* Dodatkowy styl dla aktywnej kategorii */
+  color: #ffffff;
+}
+
+.features-category.active::after {
+  width: 100%;
+  background: linear-gradient(90deg, var(--clr-accent), var(--clr-glow));
+}
+
+.features-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  margin-top: 16px;
+}
+
+.feature-item {
+  position: relative;
+  background: var(--clr-glass);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-radius: 25px; /* Bardziej zaokrąglone rogi */
+  padding: 35px 25px; /* Większy padding */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); /* Płynniejsza, bardziej elegancka animacja */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Subtelniejsza ramka */
+  overflow: hidden;
+  opacity: 1;
+  transform: translateY(20px);
+}
+
+.feature-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: 25px;
+  /* Elegancki gradient obramowania */
+  background: linear-gradient(135deg, rgba(46, 139, 87, 0.5) 0%, rgba(106, 5, 114, 0.3) 100%);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.feature-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.feature-icon {
+  font-size: 3rem; /* Większe ikony */
+  margin-bottom: 25px;
+  color: var(--clr-accent); /* Ikony w kolorze akcentu */
+  display: block;
+  line-height: 1;
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  filter: drop-shadow(0 0 10px rgba(46, 139, 87, 0.4));
+}
+
+.feature-text {
+  font-size: 1.2rem;
+  color: #c9c9c9; /* Jaśniejsza, bardziej czytelna szarość */
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 400; /* Lżejsza waga czcionki */
+  line-height: 1.6;
+  transition: all 0.4s ease;
+}
+
+/* Hover Effects */
+.feature-item:hover {
+  transform: translateY(-8px) scale(1.03); /* Lżejszy efekt unoszenia */
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3); /* Bardziej wyraźny cień */
+  border-color: rgba(46, 139, 87, 0.5); /* Podświetlenie obramowania */
+}
+
+.feature-item:hover .feature-icon {
+  transform: scale(1.15); /* Wyraźniejsze powiększenie */
+  color: var(--clr-glow); /* Zmiana koloru na blask */
+  filter: drop-shadow(0 0 15px var(--clr-glow));
+}
+
+.feature-item:hover .feature-text {
+  color: #ffffff; /* Biały tekst na hover */
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--clr-accent), var(--clr-glow));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .features-categories {
+    gap: 30px;
+    font-size: 1.8rem;
+    flex-direction: column;
+  }
+  
+  .features-list {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+  }
+  
+  .feature-item {
+    padding: 20px 15px;
+  }
+  
+  .feature-icon {
+    font-size: 2rem;
+  }
+  
+  .feature-text {
+    font-size: 1rem;
+  }
+}

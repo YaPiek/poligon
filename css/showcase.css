@@ -1,0 +1,43 @@
+/* --- Product Showcase --- */
+.product-showcase{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+    }
+.showcase-card{
+    position:relative;
+    border-radius:16px;
+    overflow:hidden;
+    cursor:pointer;
+    transform-style:preserve-3d;
+    transition:transform .5s;
+    /* Opcjonalnie: Ustaw stałą wysokość dla samej karty, jeśli chcesz, aby wszystkie karty miały ten sam rozmiar. */
+    height: 350px; /* Przykładowa stała wysokość dla całej karty, jeśli chcesz to utrzymać */
+    }
+.showcase-card:hover{
+    transform:rotateY(15deg) scale(1.05);
+    }
+.showcase-card img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  object-position: bottom;
+  transform: translateZ(0);
+  will-change: transform;
+}
+.overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--white);
+    font-size:20px;
+    font-weight:600;
+    opacity:0;
+    transition:.4s;
+    }
+.showcase-card:hover .overlay{
+    opacity:1;
+    }

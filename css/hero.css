@@ -1,0 +1,91 @@
+/* --- HERO 3D PARALLAX --- */
+.hero{height:100vh;display:flex;align-items:center;justify-content:center;perspective:1800px;overflow:hidden;position: relative;}
+.hero-inner{transform-style:preserve-3d;transition:transform .2s}
+.hero h1{font-size:clamp(40px,7vw,100px);font-weight:600;background:linear-gradient(90deg,var(--c2),var(--c4));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:glow 2s alternate infinite}
+@keyframes glow{from{text-shadow:0 0 10px var(--c2),0 0 20px var(--c2)}to{text-shadow:0 0 15px var(--c4),0 0 30px var(--c4)}}
+.hero p{font-size:clamp(16px,2vw,24px);margin:20px 0 40px;max-width:600px;text-align:center}
+.hero-btn{display:inline-block;padding:16px 40px;border:2px solid var(--c2);color:var(--white);text-decoration:none;border-radius:50px;position:relative;overflow:hidden;z-index:1;transition:.4s}
+.hero-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--c2);z-index:-1;transition:.4s}
+.hero-btn:hover{color:#000}
+.hero-btn:hover::before{left:0}
+
+/* --- PARTICLES --- */
+#particles-js{position:absolute;top:0;left:0;width:100vw;height:100%;z-index:-1}
+
+/* --- Animowany gradient hero --- */
+.hero::before {
+  width: 100vw;
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    var(--c2) 0%,
+    var(--c4) 50%,
+    var(--c3) 100%
+  );
+  opacity: 0.08;
+  z-index: -2;
+  animation: heroGradient 20s ease-in-out infinite;
+}
+
+@keyframes heroGradient {
+  0%   { opacity: 0.02; transform: scale(1.0) rotate(0deg); }
+  50%  { opacity: 0.10; transform: scale(1.05) rotate(3deg); }
+  100% { opacity: 0.02; transform: scale(1.0) rotate(0deg); }
+}
+
+/* --- Hero depth layers --- */
+.hero-bg-1, .hero-bg-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hero-bg-1 {
+  background: radial-gradient(circle at 30% 20%, rgba(0,255,136,0.1) 0%, transparent 50%);
+  animation: float1 20s infinite ease-in-out;
+}
+
+.hero-bg-2 {
+  background: radial-gradient(circle at 70% 80%, rgba(255,0,64,0.1) 0%, transparent 50%);
+  animation: float2 25s infinite ease-in-out reverse;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  transform-style: preserve-3d;
+  transition: transform 0.2s;
+}
+
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-50px, -30px) scale(1.1); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, 50px) scale(0.9); }
+}
+
+/* === Particles w headerze === */
+#hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+#headerParticles {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+

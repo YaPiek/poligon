@@ -1,0 +1,104 @@
+ /* Container & Typography */
+    .dream-section {
+      position: relative;
+      padding: 80px 20px;
+      background: #0d1117;
+      color: #fafbfc;
+      overflow: hidden;
+    }
+    .dream-section .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+      z-index: 1;
+      position: relative;
+    }
+    .dream-title {
+      font-size: 3rem;
+      margin-bottom: 0.5em;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards 0.3s;
+    }
+    .dream-subtitle {
+      font-size: 1.25rem;
+      margin-bottom: 2em;
+      color: #8b949e;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards 0.5s;
+    }
+
+    /* Cards Layout */
+    .dream-cards {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 2.5em;
+    }
+    .dream-cards .card {
+      background: #161b22;
+      padding: 2em;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      max-width: 300px;
+      transition: transform 0.3s ease;
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    .dream-cards .card img {
+      max-width: 80px;
+      margin-bottom: 1em;
+    }
+    .dream-cards .card h3 {
+      margin-bottom: 0.5em;
+      font-size: 1.5rem;
+    }
+    .dream-cards .card p {
+      color: #8b949e;
+      font-size: 1rem;
+    }
+    .dream-cards .card:hover {
+      transform: translateY(-10px) scale(1.02);
+    }
+
+    /* Button */
+    .dream-btn {
+      display: inline-block;
+      padding: 0.75em 2em;
+      font-size: 1rem;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #238636, #2ea043);
+      color: #fff;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(35,134,54,0.4);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards 0.7s;
+    }
+
+    /* Keyframes */
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Animated wave background */
+    .dream-section::before {
+      content: '';
+      position: absolute;
+      bottom: -50px;
+      left: 0;
+      width: 200%;
+      height: 200px;
+      background: url('<?php echo get_template_directory_uri(); ?>/assets/images/wave.svg') repeat-x;
+      animation: wave 10s linear infinite;
+      opacity: 0.3;
+    }
+    @keyframes wave {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }

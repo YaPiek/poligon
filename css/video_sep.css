@@ -1,0 +1,144 @@
+/* ===== VIDEO BACKGROUND CONTAINER ===== */
+.video-sep-section {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Domyślna wysokość dla desktopów */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-sep-section video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+/* ===== ANIMATED GRADIENT OVERLAY ===== */
+.video-sep-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    var(--c2) 0%,
+    var(--c4) 50%,
+    var(--c3) 100%
+  );
+  opacity: 0.08;
+  z-index: 0;
+  animation: videoGradient 20s ease-in-out infinite;
+}
+
+@keyframes videoGradient {
+  0%, 100% {
+    opacity: 0.08;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 0.12;
+    transform: scale(1.02) rotate(1deg);
+  }
+}
+
+/* ===== DEPTH LAYERS ===== */
+.video-sep-section .depth-1,
+.video-sep-section .depth-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.video-sep-section .depth-1 {
+  background: radial-gradient(circle at 30% 20%, rgba(0, 255, 136, 0.1) 0%, transparent 50%);
+  animation: floatVid1 20s infinite ease-in-out;
+}
+
+.video-sep-section .depth-2 {
+  background: radial-gradient(circle at 70% 80%, rgba(255, 0, 64, 0.1) 0%, transparent 50%);
+  animation: floatVid2 25s infinite ease-in-out reverse;
+}
+
+/* ===== MOBILE RESPONSIVENESS ===== */
+@media (max-width: 768px) {
+  .video-sep-section {
+    height: 40vh; /* Zmniejszona wysokość dla tabletów */
+    min-height: 250px;
+    max-height: 50vh;
+  }
+
+  .video-sep-section video {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .video-sep-section::after {
+    opacity: 0.04;
+    animation: videoGradientMobile 10s ease-in-out infinite; /* Jeszcze krótsza animacja */
+  }
+
+  @keyframes videoGradientMobile {
+    0%, 100% {
+      opacity: 0.04;
+      transform: scale(1) rotate(0deg);
+    }
+    50% {
+      opacity: 0.08;
+      transform: scale(1.01) rotate(0.5deg);
+    }
+  }
+
+  @keyframes floatVid1 {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(-3px, -3px) scale(1.01);
+    }
+  }
+
+  @keyframes floatVid2 {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(3px, 3px) scale(0.99);
+    }
+  }
+}
+
+/* Dla bardzo małych ekranów */
+@media (max-width: 480px) {
+  .video-sep-section {
+    height: 30vh; /* Jeszcze mniejsza wysokość */
+    min-height: 200px;
+    max-height: 40vh;
+  }
+
+  .video-sep-section::after {
+    opacity: 0.03;
+  }
+
+  .video-sep-section video {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Wyłącz animacje na bardzo słabych urządzeniach */
+  @media (prefers-reduced-motion: reduce) {
+    .video-sep-section::after,
+    .video-sep-section .depth-1,
+    .video-sep-section .depth-2 {
+      animation: none !important;
+    }
+  }
+}

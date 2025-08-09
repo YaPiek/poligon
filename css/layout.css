@@ -1,0 +1,276 @@
+/* layout.css – pełna, poprawiona wersja z wyłączonym tłem na hover dla linków i przycisków */
+
+/* --- Muted shadows on hover (feature cards etc.) --- */
+.feature-item:hover,
+.card:hover,
+.showcase-card:hover {
+  box-shadow: 0 12px 28px rgba(0 0 0 / 0.3);
+}
+
+/* --- Footer & nav --- */
+.site-footer,
+#main-nav.scrolled {
+  background: var(--clr-bg-surface);
+}
+
+/* --- Scroll-bar (optional) --- */
+::-webkit-scrollbar-thumb {
+  background: var(--clr-accent);
+  border-radius: 6px;
+}
+
+/* --- Remove old neon animations --- */
+@keyframes glow {}
+@keyframes heroGradient {}
+@keyframes videoGradient {}
+@keyframes crystalGlow {}
+
+/* --- Soft transition everywhere --- */
+* {
+  transition: color 0.2s ease, background 0.2s ease, border 0.2s ease;
+}
+
+/* ========= SUBDUED THEME – unified override ========= */
+:root {
+  /* --- Core greys --- */
+  --clr-bg-deep: #0d0d0f;
+  --clr-bg-surface: #16181d;
+  --clr-bg-elevated: #1e2028;
+
+  /* --- Subtle accents --- */
+  --clr-accent: #5a6a8c;   /* muted indigo */
+  --clr-glow: #7d869c;     /* soft steel */
+  --clr-highlight: #9ba3b4;/* light stone */
+
+  /* --- Text --- */
+  --clr-text: #d6d8e0;
+  --clr-text-muted: #9fa3ad;
+
+  /* --- Override all previous neon tokens --- */
+  --c1: var(--clr-bg-deep);
+  --c2: var(--clr-accent);
+  --c3: var(--clr-glow);
+  --c4: var(--clr-highlight);
+  --white: var(--clr-text);
+
+  /* Glass & shadows */
+  --glass-bg: rgba(255 255 255 / 0.04);
+  --glass-border: rgba(255 255 255 / 0.08);
+  --glow: 0 0 0 1px var(--glass-border),
+          0 4px 16px rgba(0 0 0 / 0.25);
+}
+
+/* --- Global resets --- */
+body {
+  background: var(--clr-bg-deep);
+  color: var(--clr-text);
+}
+
+/* --- Links & buttons --- */
+a,
+button,
+.cta,
+.hero-btn,
+.lyo-cta,
+.v-cta {
+  color: var(--clr-highlight);
+  border-color: var(--clr-accent);
+}
+a:hover,
+button:hover,
+.cta:hover,
+.hero-btn:hover,
+.lyo-cta:hover,
+.v-cta:hover {
+  color: var(--clr-bg-deep);
+  /* background: var(--clr-highlight); */  /* ← tło na hover wyłączone */
+}
+
+/* --- Gradients --- */
+.heading-gradient,
+.gradient-text,
+.hero h1,
+.lyo-title {
+  background: linear-gradient(135deg, var(--clr-accent), var(--clr-highlight));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* === SEKCJE – nadajemy tła i akcenty === */
+:root {
+  /* 1. HERO ------------------------- */
+  --hero-bg: #0a0a0d;
+  --hero-accent: #51596b;
+
+  /* 2. VISION ----------------------- */
+  --vision-bg: #0f1116;
+  --vision-accent: #5e6679;
+
+  /* 3. ADVANTAGES / HOW-IT-WORKS --- */
+  --adv-bg: #13151a;
+  --adv-accent: #6a7389;
+
+  /* 4. PRODUCTS --------------------- */
+  --products-bg: #171a20;
+  --products-accent: #757f97;
+
+  /* 5. PROCESS ---------------------- */
+  --process-bg: #1b1e25;
+  --process-accent: #7f8aa3;
+
+  /* 6. CASE STUDIES ----------------- */
+  --case-bg: #1f222a;
+  --case-accent: #8892ad;
+
+  /* 7. START-UPS -------------------- */
+  --startups-bg: #232631;
+  --startups-accent: #919bb8;
+
+  /* 8. CERTIFICATIONS -------------- */
+  --certy-bg: #272a35;
+  --certy-accent: #9aa4c2;
+
+  /* 9. CONTACT / FOOTER ------------- */
+  --footer-bg: #2b2e3a;
+  --footer-accent: #a3adcc;
+
+  /* 10. GLOBAL TEXT & GLASS -------- */
+  --text: #d6d8e0;
+  --text-muted: #9fa3ad;
+  --glass: rgba(255 255 255 / 0.05);
+  --glass-border: rgba(255 255 255 / 0.08);
+}
+
+/* === SEKCJE – przypisanie tła === */
+.hero,
+#hero {
+  background: var(--hero-bg);
+  --c2: var(--hero-accent);
+}
+
+#vision-section {
+  background: var(--vision-bg);
+  --c2: var(--vision-accent);
+}
+
+#advantages {
+  background: var(--adv-bg);
+  --c2: var(--adv-accent);
+}
+
+#products,
+.cards,
+.product-showcase {
+  background: var(--products-bg);
+  --c2: var(--products-accent);
+}
+
+#process-section,
+#canvas {
+  background: var(--process-bg);
+  --c2: var(--process-accent);
+}
+
+#case {
+  background: var(--case-bg);
+  --c2: var(--case-accent);
+}
+
+#startups {
+  background: var(--startups-bg);
+  --c2: var(--startups-accent);
+}
+
+#certy {
+  background: var(--certy-bg);
+  --c2: var(--certy-accent);
+}
+
+.site-footer,
+#contact {
+  background: var(--footer-bg);
+  --c2: var(--footer-accent);
+}
+
+/* === Ujednolicone style dla kart i tekstu === */
+body,
+section,
+footer {
+  color: var(--text);
+}
+
+.feature-item,
+.adv-card,
+.card,
+.showcase-card,
+.value-section,
+.value-card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+}
+
+/* === Wyłączamy ostre neon-glowy === */
+.hero h1,
+.heading-gradient,
+.gradient-text,
+.lyo-title {
+  background: linear-gradient(135deg, var(--c2), var(--text-muted));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* === Przejścia między sekcjami (opcjonalne) === */
+section {
+  position: relative;
+}
+section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--glass-border), transparent);
+}
+
+/* === Scroll-margin-top === */
+#hero,
+#products,
+#vision,
+#proces,
+#gama,
+#startupy,
+#case,
+#certy,
+#contact {
+  scroll-margin-top: 80px;
+}
+
+/* === Ciągły delikatny glitch .section-title === */
+.section-title.glitch {
+  animation: softGlitch 7s infinite alternate;
+}
+
+@keyframes softGlitch {
+  0%   { text-shadow: 0 0 0 rgba(0,255,136,40), 0 0 0 rgba(255,0,64,35); }
+  20%  { text-shadow: 0 0 1.5px rgba(0,255,136,55), 0 0 1.5px rgba(255,0,64,45); }
+  21%  { text-shadow: 0 0 0 rgba(0,255,136,40), 0 0 0 rgba(255,0,64,35); }
+  50%  { text-shadow: 0 0 2px rgba(0,255,136,60), 0 0 2px rgba(255,0,64,50); }
+  51%  { text-shadow: 0 0 0 rgba(0,255,136,40), 0 0 0 rgba(255,0,64,35); }
+  70%  { text-shadow: 0 0 1.2px rgba(0,255,136,50), 0 0 1.2px rgba(255,0,64,40); }
+  100% { text-shadow: 0 0 0 rgba(0,255,136,40), 0 0 0 rgba(255,0,64,35); }
+}
+
+/* === Responsive tweaks === */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    padding: 15px;
+  }
+  nav ul {
+    gap: 15px;
+    margin-top: 10px;
+  }
+}
