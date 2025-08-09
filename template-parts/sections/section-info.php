@@ -95,4 +95,6 @@ class LyoCycle_Company_Section {
         return ob_get_clean();
     }
 }
-new LyoCycle_Company_Section();
+
+$section_instance = new LyoCycle_Company_Section();
+echo $section_instance->render();
