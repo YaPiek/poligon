@@ -1,100 +1,112 @@
 <?php
 /**
- * Plugin Name: LyoCycle – Sekcja „O firmie”
- * Description: Shortcode [lyocycle_company_section] dodający sekcję o firmie LyoCycle.
- * Version: 1.0.0
- * Author: LyoCycle
+ * LyoCycle – Sekcja „O firmie / Składniki”
+ * Bezpośredni include NIE wypisuje HTML. Użyj shortcode [lyocycle_company_section]
+ * albo echo lyocycle_render_company_section();
  */
 
-if ( ! defined('ABSPATH') ) exit;
+if ( ! defined( 'ABSPATH' ) ) exit;
 
-class LyoCycle_Company_Section {
-    const HANDLE = 'lyocycle-company';
-    public function __construct() {
-        add_shortcode('lyocycle_company_section', [$this, 'render']);
-        add_action('wp_enqueue_scripts', [$this, 'register_assets']);
-    }
+if ( ! function_exists( 'lyocycle_render_company_section' ) ) {
 
-    public function register_assets() {
-        $base = plugin_dir_url(__FILE__);
-        wp_register_style(self::HANDLE, $base.'assets/css/lyocycle-company.css', [], '1.0.0');
-        wp_register_script(self::HANDLE, $base.'assets/js/lyocycle-company.js', [], '1.0.0', true);
-    }
+    function lyocycle_render_company_section( $atts = [] ) {
+        $atts = shortcode_atts([], $atts, 'lyocycle_company_section');
 
-    private function features() {
-        return [
-            ['icon'=>'⚙️','title'=>'Inżynieria procesowa','desc'=>'Projektujemy i wdrażamy instalacje liofilizacji skrojone pod wymagania branży spożywczej i HoReCa.'],
-            ['icon'=>'❄️','title'=>'Technologia liofilizacji','desc'=>'Stabilizacja jakości, pełnia smaku i wartości odżywczych – przy minimalnej aktywności wody.'],
-            ['icon'=>'📊','title'=>'Optymalizacja kosztów','desc'=>'Bilans CAPEX/OPEX, odzysk energii, standaryzacja cykli i przeglądów serwisowych.'],
-            ['icon'=>'🔒','title'=>'Jakość i zgodność','desc'=>'Procedury HACCP, dokumentacja, szkolenia i wsparcie audytowe.'],
-        ];
-    }
+        ob_start();
+        ?>
+        <section id="info" class="lyo-sec" aria-labelledby="lyo-sec-title">
+            
 
-    public function render($atts = []) {
-        wp_enqueue_style(self::HANDLE);
-        wp_enqueue_script(self::HANDLE);
+            <div class="lyo-wrap">
+                <header>
+                    <h2 id="lyo-sec-title">
+                        Liofilizowane i suszone na powietrzu składniki dla nowoczesnego przemysłu spożywczego
+                    </h2>
+                    <p class="lyo-lead">
+                        Naszą wizją są delikatnie liofilizowane oraz suszone na powietrzu składniki premium — 100% naturalne,
+                        pełne aromatu, wszechstronne i z długim okresem przydatności do spożycia. Dostępne w wersji
+                        konwencjonalnej i ekologicznej.
+                    </p>
+                </header>
 
-        $features = $this->features();
+                <hr class="lyo-hr" />
 
-        ob_start(); ?>
-<section id="lyo-company" class="lyo-company" aria-label="O firmie LyoCycle">
-  <div class="lyo-wrap">
-    <header class="lyo-head" data-reveal>
-      <span class="eyebrow">LyoCycle</span>
-      <h2>Zaawansowane rozwiązania liofilizacji dla nowoczesnej branży spożywczej</h2>
-      <p class="lead">
-        Dostarczamy kompletne systemy i usługi: od projektu, przez uruchomienie, po serwis.
-        Nasza technologia pomaga ograniczać marnowanie żywności i wydłużać trwałość produktów,
-        bez kompromisów w smaku i wartościach odżywczych.
-      </p>
-      <div class="lyo-cta">
-        <a class="btn primary" href="<?php echo esc_url( home_url('/kontakt') ); ?>">Porozmawiaj z inżynierem</a>
-        <a class="btn ghost" href="<?php echo esc_url( home_url('/realizacje') ); ?>">Zobacz realizacje</a>
-      </div>
-    </header>
+                <div class="lyo-grid">
+                    <div class="lyo-col lyo-col-7">
+                        <div class="blk">
+                            <h3>Od świeżego surowca do gotowego składnika</h3>
+                            <p>
+                                Jako pionierzy i eksperci w liofilizacji, delikatnie przetwarzamy świeże surowce dla przemysłu
+                                spożywczego. Oferujemy m.in. owoce, warzywa, chrupki i crunchies, słodycze i dropsy, zioła
+                                i przyprawy, superfoods, a także mięso, ser oraz ich roślinne alternatywy.
+                                Wspieramy <strong>start-upy</strong>, <strong>MŚP</strong> i <strong>liderów branży</strong> w projektach R&amp;D,
+                                wdrożeniach i skalowaniu produkcji.
+                            </p>
+                            <div class="chips" aria-label="Cechy produktu">
+                                <span class="chip">100% naturalne</span>
+                                <span class="chip">pełny aromat</span>
+                                <span class="chip">długi shelf-life</span>
+                                <span class="chip">eko i konwencjonalne</span>
+                                <span class="chip">składniki premium</span>
+                            </div>
+                        </div>
+                    </div>
 
-    <div class="lyo-grid">
-      <?php foreach ($features as $f): ?>
-      <article class="card" data-reveal>
-        <div class="icon"><?php echo esc_html($f['icon']); ?></div>
-        <h3><?php echo esc_html($f['title']); ?></h3>
-        <p><?php echo esc_html($f['desc']); ?></p>
-      </article>
-      <?php endforeach; ?>
-    </div>
+                    <div class="lyo-col lyo-col-5">
+                        <div class="blk">
+                            <h3>Witamy w LyoCycle</h3>
+                            <p>
+                                Łączymy technologię liofilizacji z potrzebami nowoczesnego rynku.
+                                Dostarczamy składniki i wsparcie procesowe dla producentów żywności, marek private-label
+                                oraz innowatorów rozwijających produkty funkcjonalne i wygodne w użyciu.
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-    <section class="lyo-badges" aria-label="Parametry i korzyści">
-      <div class="badge" data-reveal>
-        <strong>−95%</strong><span>masa wody</span>
-      </div>
-      <div class="badge" data-reveal>
-        <strong>+24 mies.</strong><span>trwałość</span>
-      </div>
-      <div class="badge" data-reveal>
-        <strong>IQF</strong><span>tekstura & smak</span>
-      </div>
-      <div class="badge" data-reveal>
-        <strong>HACCP</strong><span>zgodność</span>
-      </div>
-    </section>
+                <hr class="lyo-hr" />
 
-    <section class="lyo-cats" aria-label="Zastosowania">
-      <h3 data-reveal>Zastosowania</h3>
-      <ul class="cats" data-reveal>
-        <li><span class="dot"></span> Zupy i sosy</li>
-        <li><span class="dot"></span> Sałatki & dressingi</li>
-        <li><span class="dot"></span> Przekąski i żywność funkcjonalna</li>
-        <li><span class="dot"></span> Mleko i alternatywy roślinne</li>
-        <li><span class="dot"></span> Napoje instant</li>
-      </ul>
-    </section>
-  </div>
-  <div class="lyo-bg" aria-hidden="true"></div>
-</section>
-<?php
+                <div class="lyo-grid">
+                    <div class="lyo-col">
+                        <div class="cats" role="list" aria-label="Kategorie składników">
+                            <?php
+                            // Kategorie do wyświetlenia (łatwo modyfikowalne)
+                            $cats = [
+                                ['emoji'=>'🍓','t'=>'Owoce liofilizowane','d'=>'Musli, batony, desery, czekolady, dekoracje cukiernicze.'],
+                                ['emoji'=>'🥦','t'=>'Warzywa liofilizowane','d'=>'Zupy, sosy, dania instant, przekąski i mieszanki.'],
+                                ['emoji'=>'🥣','t'=>'Musli & batony','d'=>'Crunchies, kawałki owoców i warzyw, superfoods w blendach.'],
+                                ['emoji'=>'🥨','t'=>'Przekąski','d'=>'Chrupiące dodatki, mieszanki smakowe i premium „snack-mix”.'],
+                                ['emoji'=>'🧂','t'=>'Zioła i przyprawy','d'=>'Mieszanki przypraw, sosy, dressingi, marynaty i posypki.'],
+                                ['emoji'=>'🍜','t'=>'Zupy & sosy','d'=>'Bazy smakowe, wkładki warzywne i białkowe, clean-label.'],
+                                ['emoji'=>'🥗','t'=>'Sałatki i dressingi','d'=>'Dodatki chrupiące, przyprawy, owoce i warzywa w kostce.'],
+                                ['emoji'=>'🥛','t'=>'Nabiał & roślinne alternatywy','d'=>'Proszki i inkluzje do jogurtów, napojów, deserów i lodów.'],
+                                ['emoji'=>'🥩','t'=>'Mięso & alternatywy roślinne','d'=>'Składniki białkowe do dań gotowych i przekąsek wysokobiałkowych.'],
+                                ['emoji'=>'☕','t'=>'Napoje instant','d'=>'Granulaty i proszki smakowe, owoce liofilizowane do napojów.'],
+                                ['emoji'=>'🌿','t'=>'Superfoods liofilizowane','d'=>'Funkcjonalne mieszanki, nutraceutyki, produkty wellness.'],
+                                ['emoji'=>'💊','t'=>'Suplementy & żywność funkcjonalna','d'=>'Składniki premium do R&amp;D, kapsułek, tabletek i proszków.'],
+                                ['emoji'=>'🔥','t'=>'Outdoor & żywność na wyprawy','d'=>'Posiłki lekkie, trwałe i pełnowartościowe do szybkiego odtworzenia.'],
+                                ['emoji'=>'🧑‍🍳','t'=>'Składniki dla cukiernictwa','d'=>'Dekoracje, inkluzje do czekolady, nadzienia i musy.'],
+                            ];
+                            foreach ($cats as $c): ?>
+                                <article class="cat" role="listitem">
+                                    <div class="ico" aria-hidden="true"><?php echo esc_html($c['emoji']); ?></div>
+                                    <div>
+                                        <h4><?php echo esc_html($c['t']); ?></h4>
+                                        <p><?php echo esc_html($c['d']); ?></p>
+                                    </div>
+                                </article>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <?php
         return ob_get_clean();
     }
 }
 
-$section_instance = new LyoCycle_Company_Section();
-echo $section_instance->render();
+/** Shortcode: [lyocycle_company_section] */
+add_shortcode('lyocycle_company_section', function($atts = []) {
+    return lyocycle_render_company_section($atts);
+});
